@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CashFlow.Application\CashFlow.Application.csproj" />
+    <ProjectReference Include="..\CashFlow.DTO\CashFlow.DTO.csproj" />
+    <ProjectReference Include="..\CashFlow.Exception\CashFlow.Exception.csproj" />
+    <ProjectReference Include="..\CashFlow.External\CashFlow.External.csproj" />
+    <ProjectReference Include="..\CashFlow.Infra\CashFlow.Infra.csproj" />
+  </ItemGroup>
+
+</Project>

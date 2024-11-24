@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CashFlow.Application\CashFlow.Application.csproj" />
+    <ProjectReference Include="..\CashFlow.DTO\CashFlow.DTO.csproj" />
+    <ProjectReference Include="..\CashFlow.Exception\CashFlow.Exception.csproj" />
+  </ItemGroup>
+
+</Project>
