@@ -4,7 +4,7 @@ public class ErrorResponse
 {
     public IEnumerable<string> Errors { get; set; } = [];
 
-    public ErrorResponse(List<string> errorMessages)
+    public ErrorResponse(IEnumerable<string> errorMessages)
     {
         Errors = errorMessages;
     }

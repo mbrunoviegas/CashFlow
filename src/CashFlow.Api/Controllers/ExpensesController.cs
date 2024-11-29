@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CashFlow.Application.UseCases.Expenses.Delete;
 using CashFlow.Application.UseCases.Expenses.GetAll;
 using CashFlow.Application.UseCases.Expenses.GetById;
 using CashFlow.Application.UseCases.Expenses.Register;
@@ -43,5 +44,14 @@ public class ExpensesController(IMapper mapper) : ControllerBase
     {
         var expense = await useCase.Execute(id);
         return expense is null ? NoContent() : Ok(_mapper.Map<ExpenseResponseDTO>(expense));
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteExpense(
+        [FromServices] IDeleteExpenseUseCase useCase,
+        [FromRoute] long id)
+    {
+        await useCase.Execute(id);
+        return NoContent();
     }
 }

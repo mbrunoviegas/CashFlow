@@ -1,14 +1,20 @@
 ﻿using CashFlow.Domain.Entities;
+using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Expenses;
 
 namespace CashFlow.Application.UseCases.Expenses.Register;
 
-public class RegisterExpenseUseCase(IExpensesRepository repository): IRegisterExpenseUseCase
+public class RegisterExpenseUseCase(IExpensesWriteOnlyRepository repository, IUnitOfWork unitOfWork): IRegisterExpenseUseCase
 {
-    private readonly IExpensesRepository _repository = repository;
+    private readonly IExpensesWriteOnlyRepository _repository = repository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task<long> Execute(Expense expense)
     {
-        return await _repository.CreateAsync(expense);
+        var createdExpense = await _repository.CreateAsync(expense);
+
+        await _unitOfWork.Commit();
+
+        return createdExpense;
     }
 }

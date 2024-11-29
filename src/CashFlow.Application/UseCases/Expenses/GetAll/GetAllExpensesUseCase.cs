@@ -2,9 +2,9 @@
 using CashFlow.Domain.Repositories.Expenses;
 
 namespace CashFlow.Application.UseCases.Expenses.GetAll;
-internal class GetAllExpensesUseCase(IExpensesRepository repository) : IGetAllExpensesUseCase
+internal class GetAllExpensesUseCase(IExpensesReadOnlyRepository repository) : IGetAllExpensesUseCase
 {
-    private readonly IExpensesRepository _repository = repository;
+    private readonly IExpensesReadOnlyRepository _repository = repository;
 
     public async Task<IEnumerable<Expense>> Execute()
     {

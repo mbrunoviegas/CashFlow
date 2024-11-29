@@ -22,19 +22,11 @@ public class ExceptionFilter : IExceptionFilter
 
     public void HandleApplicationException(ExceptionContext context)
     {
-        if (context.Exception is ErrorOnValidationException exeception)
-        {
-            var errorResponse = new ErrorResponse(exeception.ErrorMessages);
+        var cashFlowException = context.Exception as CashFlowException;
+        var errorResponse = new ErrorResponse(cashFlowException!.GetErrors());
 
-            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            context.Result = new BadRequestObjectResult(errorResponse);
-        } else
-        {
-            var errorResponse = new ErrorResponse(context.Exception.Message);
-
-            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            context.Result = new ObjectResult(errorResponse);
-        }
+        context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+        context.Result = new BadRequestObjectResult(errorResponse);
     }
 
     public void HandleUnknownException(ExceptionContext context)
