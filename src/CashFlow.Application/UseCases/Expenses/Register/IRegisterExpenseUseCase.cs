@@ -1,8 +1,7 @@
-﻿using CashFlow.DTO.Requests;
-using CashFlow.DTO.Responses;
+﻿using CashFlow.Domain.Entities;
 
 namespace CashFlow.Application.UseCases.Expenses.Register;
 public interface IRegisterExpenseUseCase
 {
-    RegisterExpenseResponseDTO Execute(RegisterExpenseRequestDTO registerExpense);
+    Task<long> Execute(Expense expense);
 }

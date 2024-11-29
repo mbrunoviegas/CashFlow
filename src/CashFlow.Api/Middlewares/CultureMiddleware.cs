@@ -9,19 +9,20 @@ public class CultureMiddleware(RequestDelegate next)
     public async Task Invoke(HttpContext context)
     {
         var supportedLanguages = CultureInfo.GetCultures(CultureTypes.AllCultures).ToList();
-        var requestCulture = context.Request.Headers.AcceptLanguage.FirstOrDefault();
+
+        var requestedCulture = context.Request.Headers.AcceptLanguage.FirstOrDefault();
 
         var cultureInfo = new CultureInfo("en");
 
-        if(!string.IsNullOrEmpty(requestCulture) 
-            && supportedLanguages.Exists(language => language.Name.Equals(requestCulture)))
+        if (!string.IsNullOrWhiteSpace(requestedCulture)
+            && supportedLanguages.Exists(language => language.Name.Equals(requestedCulture)))
         {
-            cultureInfo = new CultureInfo(requestCulture);
+            cultureInfo = new CultureInfo(requestedCulture);
         }
-        
+
         CultureInfo.CurrentCulture = cultureInfo;
         CultureInfo.CurrentUICulture = cultureInfo;
-        
+
         await _next(context);
     }
 }

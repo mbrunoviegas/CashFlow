@@ -9,7 +9,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddValidators(this IServiceCollection services)
     {
-        services.AddSingleton<IPayloadValidator<RegisterExpenseRequestDTO>, RegisterExpenseValidator>();
+        services.AddScoped<IPayloadValidator<RegisterExpenseRequestDTO>, RegisterExpenseValidator>();
         return services;
     }
 }

@@ -1,20 +1,14 @@
-﻿using CashFlow.Application.Validators;
-using CashFlow.DTO.Requests;
-using CashFlow.DTO.Responses;
+﻿using CashFlow.Domain.Entities;
+using CashFlow.Domain.Repositories.Expenses;
 
 namespace CashFlow.Application.UseCases.Expenses.Register;
 
-public class RegisterExpenseUseCase(IPayloadValidator<RegisterExpenseRequestDTO> validator): IRegisterExpenseUseCase
+public class RegisterExpenseUseCase(IExpensesRepository repository): IRegisterExpenseUseCase
 {
-    private readonly IPayloadValidator<RegisterExpenseRequestDTO> _validator = validator;
+    private readonly IExpensesRepository _repository = repository;
 
-    public RegisterExpenseResponseDTO Execute(RegisterExpenseRequestDTO registerExpense)
+    public async Task<long> Execute(Expense expense)
     {
-        _validator.Validate(registerExpense);
-
-        return new RegisterExpenseResponseDTO
-        {
-            Title = registerExpense.Title
-        };
+        return await _repository.CreateAsync(expense);
     }
 }

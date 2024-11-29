@@ -2,5 +2,5 @@
 
 public class RegisterExpenseResponseDTO
 {
-    public string Title { get; set; } = string.Empty;
+    public long Id { get; set; }
 }
