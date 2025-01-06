@@ -1,6 +1,7 @@
 ﻿using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Exception.BaseException;
+using CashFlow.Exception.Resources;
 
 namespace CashFlow.Application.UseCases.Expenses.Delete;
 
@@ -15,7 +16,7 @@ internal class DeleteExpenseUseCase(IExpensesWriteOnlyRepository repository, IUn
 
         if(!isDeleted)
         {
-            throw new NotFoundException("Expense not found.");
+            throw new NotFoundException(ErrorMessagesResources.EXPENSE_NOT_FOUND);
         }
 
         await _unitOfWork.Commit();

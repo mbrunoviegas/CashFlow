@@ -2,7 +2,7 @@
 
 namespace CashFlow.DTO.Requests;
 
-public class RegisterExpenseRequestDTO
+public class ExpenseRequestDTO
 {
     public string Title { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;

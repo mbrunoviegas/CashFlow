@@ -6,9 +6,9 @@ using FluentValidation;
 
 namespace CashFlow.External.Validators.Expenses;
 
-public class RegisterExpenseValidator: AbstractValidator<RegisterExpenseRequestDTO>, IPayloadValidator<RegisterExpenseRequestDTO>
+public class ExpenseValidator: AbstractValidator<ExpenseRequestDTO>, IPayloadValidator<ExpenseRequestDTO>
 {
-    public RegisterExpenseValidator()
+    public ExpenseValidator()
     {
         RuleFor(x => x.Title).NotEmpty().WithMessage(ErrorMessagesResources.TITLE_REQUIRED);
         RuleFor(x => x.Description).NotEmpty().WithMessage(ErrorMessagesResources.DESCRIPTION_REQUIRED);
@@ -17,7 +17,7 @@ public class RegisterExpenseValidator: AbstractValidator<RegisterExpenseRequestD
         RuleFor(x => x.PaymentType).IsInEnum().WithMessage(ErrorMessagesResources.PAYMENT_TYPE_INVALID);
     }
 
-    void IPayloadValidator<RegisterExpenseRequestDTO>.Validate(RegisterExpenseRequestDTO entity)
+    void IPayloadValidator<ExpenseRequestDTO>.Validate(ExpenseRequestDTO entity)
     {
         var result = Validate(entity);
 

@@ -6,9 +6,9 @@ namespace CommonTestUtilities.Builders;
 
 public static class RegisterExpenseRequestDTOBuilder
 {
-    public static RegisterExpenseRequestDTO Build()
+    public static ExpenseRequestDTO Build()
     {
-        return new Faker<RegisterExpenseRequestDTO>()
+        return new Faker<ExpenseRequestDTO>()
             .RuleFor(x => x.Title, f => f.Lorem.Word())
             .RuleFor(x => x.Description, f => f.Lorem.Sentence())
             .RuleFor(x => x.Amount, f => f.Random.Decimal(1, 1000))

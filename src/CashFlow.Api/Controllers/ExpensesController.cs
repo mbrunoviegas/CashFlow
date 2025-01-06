@@ -3,6 +3,7 @@ using CashFlow.Application.UseCases.Expenses.Delete;
 using CashFlow.Application.UseCases.Expenses.GetAll;
 using CashFlow.Application.UseCases.Expenses.GetById;
 using CashFlow.Application.UseCases.Expenses.Register;
+using CashFlow.Application.UseCases.Expenses.Update;
 using CashFlow.Application.Validators;
 using CashFlow.Domain.Entities;
 using CashFlow.DTO.Requests;
@@ -20,8 +21,8 @@ public class ExpensesController(IMapper mapper) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> RegisterExpense(
         [FromServices] IRegisterExpenseUseCase useCase,
-        [FromServices] IPayloadValidator<RegisterExpenseRequestDTO> validator,
-        [FromBody] RegisterExpenseRequestDTO request)
+        [FromServices] IPayloadValidator<ExpenseRequestDTO> validator,
+        [FromBody] ExpenseRequestDTO request)
     {
         validator.Validate(request);
         var payload = _mapper.Map<Expense>(request);
@@ -52,6 +53,20 @@ public class ExpensesController(IMapper mapper) : ControllerBase
         [FromRoute] long id)
     {
         await useCase.Execute(id);
+        return NoContent();
+    }
+
+    [HttpPut]
+    [Route("{id}")]
+    public async Task<IActionResult> Update(
+       [FromServices] IUpdateExpenseUseCase useCase,
+       [FromServices] IPayloadValidator<ExpenseRequestDTO> validator,
+       [FromRoute] long id,
+       [FromBody] ExpenseRequestDTO request)
+    {
+        validator.Validate(request);
+        await useCase.Execute(id, _mapper.Map<Expense>(request));
+
         return NoContent();
     }
 }

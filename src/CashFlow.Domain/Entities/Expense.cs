@@ -9,4 +9,13 @@ public class Expense
     public DateTime Date { get; set; }
     public decimal Amount { get; set; }
     public PaymentType PaymentType { get; set; }
+
+    public void Update(Expense expense)
+    {
+        Title = expense.Title;
+        Description = expense.Description;
+        Date = expense.Date;
+        Amount = expense.Amount;
+        PaymentType = expense.PaymentType;
+    }
 }

@@ -30,6 +30,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<IExpensesReadOnlyRepository, ExpensesRepositories>();
         services.AddScoped<IExpensesWriteOnlyRepository, ExpensesRepositories>();
+        services.AddScoped<IExpensesUpdateOnlyRepository, ExpensesRepositories>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         return services;
     }

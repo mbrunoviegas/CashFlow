@@ -10,6 +10,8 @@ public class ExceptionFilter : IExceptionFilter
 {
     public void OnException(ExceptionContext context)
     {
+        Console.WriteLine(context.Exception.Message);
+
         if(context.Exception is CashFlowException)
         {
             HandleApplicationException(context);

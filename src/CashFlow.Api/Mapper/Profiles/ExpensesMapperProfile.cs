@@ -6,7 +6,7 @@ internal class ExpensesMapperProfile: Profile
 {
     public ExpensesMapperProfile()
     {
-        CreateMap<DTO.Requests.RegisterExpenseRequestDTO, Domain.Entities.Expense>();
+        CreateMap<DTO.Requests.ExpenseRequestDTO, Domain.Entities.Expense>();
         CreateMap<Domain.Entities.Expense, DTO.Responses.ExpenseResponseDTO>();
     }
 }
