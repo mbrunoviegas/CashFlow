@@ -3,12 +3,14 @@ using CashFlow.Application.UseCases.Expenses.Delete;
 using CashFlow.Application.UseCases.Expenses.GetAll;
 using CashFlow.Application.UseCases.Expenses.GetById;
 using CashFlow.Application.UseCases.Expenses.Register;
+using CashFlow.Application.UseCases.Expenses.Report;
 using CashFlow.Application.UseCases.Expenses.Update;
 using CashFlow.Application.Validators;
 using CashFlow.Domain.Entities;
 using CashFlow.DTO.Requests;
 using CashFlow.DTO.Responses;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 
 namespace CashFlow.Api.Controllers;
 
@@ -66,6 +68,22 @@ public class ExpensesController(IMapper mapper) : ControllerBase
     {
         validator.Validate(request);
         await useCase.Execute(id, _mapper.Map<Expense>(request));
+
+        return NoContent();
+    }
+
+    [HttpGet("report/excel")]
+    public async Task<IActionResult> GetExcel(
+        [FromServices] IReportExpenseUseCase useCase,
+        [FromQuery] DateOnly month
+        )
+    {
+        byte[] file = await useCase.Execute(month);
+
+        if(file.Length > 0)
+        {
+            return File(file, MediaTypeNames.Application.Octet, "expenses-report.xlsx");
+        }
 
         return NoContent();
     }
