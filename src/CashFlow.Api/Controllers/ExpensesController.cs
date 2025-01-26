@@ -74,7 +74,7 @@ public class ExpensesController(IMapper mapper) : ControllerBase
 
     [HttpGet("report/excel")]
     public async Task<IActionResult> GetExcel(
-        [FromServices] IReportExpenseUseCase useCase,
+        [FromKeyedServices(ApplicationExtensionsKeys.EXCEL_REPORT_EXPENSE_USE_CASE)] IReportExpenseUseCase useCase,
         [FromQuery] DateOnly month
         )
     {
