@@ -87,4 +87,20 @@ public class ExpensesController(IMapper mapper) : ControllerBase
 
         return NoContent();
     }
+    
+    [HttpGet("report/pdf")]
+    public async Task<IActionResult> GetPdf(
+        [FromKeyedServices(ApplicationExtensionsKeys.PDF_REPORT_EXPENSE_USE_CASE)] IReportExpenseUseCase useCase,
+        [FromQuery] DateOnly month
+        )
+    {
+        byte[] file = await useCase.Execute(month);
+
+        if(file.Length > 0)
+        {
+            return File(file, MediaTypeNames.Application.Pdf, "expenses-report.pdf");
+        }
+
+        return NoContent();
+    }
 }
