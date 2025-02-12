@@ -1,4 +1,4 @@
-﻿using CashFlow.Domain.Repositories.Expenses;
+using CashFlow.Domain.Repositories.Expenses;
 using CashFlow.Application.UseCases.Expenses.Report.Pdf.Fonts;
 using PdfSharp.Fonts;
 using MigraDoc.DocumentObjectModel;
