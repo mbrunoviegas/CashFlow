@@ -1,5 +1,6 @@
 ﻿using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.Expenses;
+using CashFlow.Domain.Repositories.Users;
 using CashFlow.Infra.DataAccess;
 using CashFlow.Infra.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +32,9 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IExpensesReadOnlyRepository, ExpensesRepositories>();
         services.AddScoped<IExpensesWriteOnlyRepository, ExpensesRepositories>();
         services.AddScoped<IExpensesUpdateOnlyRepository, ExpensesRepositories>();
+        services.AddScoped<IUserReadOnlyRepository, UsersRepository>();
+        services.AddScoped<IUserWriteOnlyRepository, UsersRepository>();
+        services.AddScoped<IUserUpdateOnlyRepository, UsersRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         return services;
     }

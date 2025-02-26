@@ -6,7 +6,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddMapper(this IServiceCollection services)
     {
-        services.AddAutoMapper(typeof(ExpensesMapperProfile));
+        services.AddAutoMapper(typeof(MapperProfile));
         return services;
     }
 }
