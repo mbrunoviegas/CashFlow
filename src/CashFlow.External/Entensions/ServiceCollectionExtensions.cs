@@ -4,6 +4,7 @@ using CashFlow.Domain.Security.Tokens;
 using CashFlow.DTO.Requests;
 using CashFlow.External.Security.Tokens;
 using CashFlow.External.Validators.Expenses;
+using CashFlow.External.Validators.Users;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,7 +23,8 @@ public static class ServiceCollectionExtensions
 
     private static IServiceCollection AddValidators(this IServiceCollection services)
     {
-        services.AddScoped<IPayloadValidator<ExpenseRequestDTO>, ExpenseValidator>();
+        services.AddScoped<IPayloadValidator<ExpenseRequestDTO>, ExpenseValidator>()
+            .AddScoped<IPayloadValidator<RegisterUserRequestDTO>, RegisterUserValidator>();
         return services;
     }
 

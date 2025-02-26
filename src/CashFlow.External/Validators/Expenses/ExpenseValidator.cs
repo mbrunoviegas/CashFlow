@@ -22,6 +22,6 @@ public class ExpenseValidator: AbstractValidator<ExpenseRequestDTO>, IPayloadVal
         var result = Validate(entity);
 
         if(!result.IsValid)
-            throw new ErrorOnValidationException(result.Errors.Select(error => error.ErrorMessage).ToList());
+            throw new ErrorOnValidationException([.. result.Errors.Select(error => error.ErrorMessage)]);
     }
 }
