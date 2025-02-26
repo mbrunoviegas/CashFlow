@@ -6,6 +6,7 @@ using CashFlow.Application.UseCases.Expenses.Report;
 using CashFlow.Application.UseCases.Expenses.Report.Excel;
 using CashFlow.Application.UseCases.Expenses.Report.Pdf;
 using CashFlow.Application.UseCases.Expenses.Update;
+using CashFlow.Application.UseCases.Login;
 using CashFlow.Application.UseCases.Users.Register;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,7 +24,8 @@ public static class ServiceCollectionExtensions
             .AddScoped<IUpdateExpenseUseCase, UpdateExpenseUseCase>()
             .AddKeyedScoped<IReportExpenseUseCase, ExcelReportExpenseUseCase>(ApplicationExtensionsKeys.EXCEL_REPORT_EXPENSE_USE_CASE)
             .AddKeyedScoped<IReportExpenseUseCase, PdfReportExpenseUseCase>(ApplicationExtensionsKeys.PDF_REPORT_EXPENSE_USE_CASE)
-            .AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
+            .AddScoped<IRegisterUserUseCase, RegisterUserUseCase>()
+            .AddScoped<ILoginUseCase, LoginUseCase>();
         return services;
     }
 }

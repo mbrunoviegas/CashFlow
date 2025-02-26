@@ -4,6 +4,8 @@ using CashFlow.Domain.Repositories.Users;
 using CashFlow.Domain.Security.Crypotography;
 using CashFlow.Domain.Security.Tokens;
 using CashFlow.DTO.Responses;
+using CashFlow.Exception.BaseException;
+using CashFlow.Exception.Resources;
 
 namespace CashFlow.Application.UseCases.Users.Register;
 
@@ -22,6 +24,8 @@ public class RegisterUserUseCase(
 
     public async Task<RegisterUserResponseDTO> Execute(User user)
     {
+        await ValidateUserEmail(user);
+
         user.Password = _encrypter.Encrypt(user.Password);
         user.UserIdentifier = Guid.NewGuid();
         
@@ -33,5 +37,15 @@ public class RegisterUserUseCase(
             Name = user.Name,
             Token = _tokenGenerator.Generate(user)
         };
+    }
+
+    private async Task ValidateUserEmail(User user)
+    {
+        var emailExist = await _readOnlyRepository.ExistActiveUserWithEmail(user.Email);
+        
+        if (emailExist)
+        {
+            throw new ErrorOnValidationException([ErrorMessagesResources.EMAIL_ALREADY_REGISTERED]);
+        }
     }
 }

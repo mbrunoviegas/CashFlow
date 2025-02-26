@@ -161,4 +161,12 @@
     <value>Invalid password.</value>
     <comment>MB</comment>
   </data>
+  <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
+    <value>Email already exists.</value>
+    <comment>MB</comment>
+  </data>
+  <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
+    <value>Email or password invalid.</value>
+    <comment>MB</comment>
+  </data>
 </root>

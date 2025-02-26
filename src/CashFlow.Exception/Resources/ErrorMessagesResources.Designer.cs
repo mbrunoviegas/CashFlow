@@ -88,6 +88,15 @@ namespace CashFlow.Exception.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email already exists..
+        /// </summary>
+        public static string EMAIL_ALREADY_REGISTERED {
+            get {
+                return ResourceManager.GetString("EMAIL_ALREADY_REGISTERED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email cannot be empty..
         /// </summary>
         public static string EMAIL_EMPTY {
@@ -102,6 +111,15 @@ namespace CashFlow.Exception.Resources {
         public static string EMAIL_INVALID {
             get {
                 return ResourceManager.GetString("EMAIL_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email or password invalid..
+        /// </summary>
+        public static string EMAIL_OR_PASSWORD_INVALID {
+            get {
+                return ResourceManager.GetString("EMAIL_OR_PASSWORD_INVALID", resourceCulture);
             }
         }
         

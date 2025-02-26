@@ -9,6 +9,7 @@ using CashFlow.Application.Validators;
 using CashFlow.Domain.Entities;
 using CashFlow.DTO.Requests;
 using CashFlow.DTO.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -16,6 +17,7 @@ namespace CashFlow.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class ExpensesController(IMapper mapper) : ControllerBase
 {
     private readonly IMapper _mapper = mapper;
